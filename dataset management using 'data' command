@@ -1,0 +1,48 @@
+*Create temp dataset input within SAS libraries;
+
+data cars;
+set sashelp.cars;
+run;
+
+*Creating Permamnent Libraries through Libname;
+
+libname rahul '/folders/myfolders';
+
+*create your own dataset;
+
+data patients; 
+input name $ gender $ Age Weight;
+cards;
+John M 49 90.2
+Sasha F 25 54.1
+Nikhil M 31 110.9
+Zoya F 55 78.3
+;
+run;
+
+*create your own dataset using delimiter;
+
+data patients; 
+infile cards delimiter=',';
+input name :$15. gender $ Age Weight;
+cards;
+John Basil,M,49,90.2
+Sasha,F,25,54.1
+Nikhil,M,31,110.9
+Zoya,F,55,78.3
+;
+run;
+
+
+*create your own dataset using dsd;
+
+data patients; 
+infile cards delimiter=',' dsd;
+input name :$15. gender $ Age Weight;
+cards;
+"John,Basil",M,49,90.2
+"Sasha,Banks",F,25,54.1
+"Nikhil,Oberoi",M,31,110.9
+"Zoya,Sheikh",F,55,78.3
+;
+run; 
